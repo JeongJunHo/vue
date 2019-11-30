@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>SSAFY</title>
+<script type="text/javascript" src="https://unpkg.com/vue"></script>
+</head>
+<body>
+	<div id="app">
+		<div>{{message}}</div>
+		<div v-if="isShow"> <!-- 화면에서 완전히 제외 시킴 (주석으로 치환) -->
+			<div>v-if =====> {{message}}</div>
+		</div>
+		<div v-show="isShow">
+			<div>v-show =====> {{message}}</div>
+		</div>
+		<div v-on:click="methodtest">
+			method click
+		</div>
+	</div>
+	<script>
+		new Vue({
+			el: "#app",
+	// 		data: {message: "SSAFY", isShow:false},
+			data: {message: "SSAFY"}, //만약 값이 없다면 false
+			computed: {
+				isShow: function(){
+					alert("computed");
+					return this.message.length > 5;
+				}
+			},
+			filters: {
+				toUpper(value){
+					return value.toUpperCase();
+				},
+				toLower(value){
+					return value.toLowerCase();
+				},
+				toValue3(value){
+					var s = "";
+					for (i = 0; i < 3; i++) {
+						s+=value+" ";
+					}
+					return s;
+				}
+			},
+			methods: {
+				hello: function(){
+					return this.message = "change Data";
+				},
+				hello2:function(num){
+					return num + " : " + arguments[1] + " 번 입니다";
+				},
+				methodtest:function(){
+					alert("MethodTest");
+					return this.message += this.message;
+				}
+			}
+		});
+	</script>
+</body>
+</html>

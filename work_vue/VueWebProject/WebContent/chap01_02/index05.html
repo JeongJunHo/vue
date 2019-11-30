@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>SSAFY</title>
+<script type="text/javascript" src="https://unpkg.com/vue"></script>
+</head>
+<body>
+	<div id="first">
+		{{title}}
+		<div v-on:click="change()">click</div>
+	</div>
+	<script>
+		var app = new Vue({
+			el: "#first",
+			data: {title: "SSAFY"},
+			methods: {
+				change: function(){this.title = "Hello" + this.title}
+			},
+			beforeCreate: function(){
+				console.log("beforeCreate title : " + this.title);
+			},
+			created: function(){
+				console.log("create title : " + this.$data.title);
+				console.log("create el : " + this.$el);
+			},
+			beforeMount: function(){
+				console.log("beforeMount title : " + this.title);
+			},
+			mounted: function(){
+				console.log("mounted title : " + this.$data.title);
+				console.log("mounted el : " + this.$el);
+			},
+			beforeUpdate: function(){
+				console.log("beforeupdate title : " + this.title);
+			},
+			updated: function(){
+				console.log("updated title : " + this.$data.title);
+				console.log("updated el : " + this.$el);
+			},
+			beforeDestroy: function(){
+				console.log("beforeDestroy title : " + this.title);
+			},
+			destroyed: function(){
+				console.log("destroyed title : " + this.$data.title);
+				console.log("destroyed el : " + this.$el);
+			}
+		});
+		
+		Vue.config.devtools = true;
+	</script>
+</body>
+</html>
